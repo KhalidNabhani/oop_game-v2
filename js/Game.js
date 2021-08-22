@@ -80,7 +80,7 @@ class Game{
      ************************************************************************  */
     removeLife(){
         let triesHeart = document.getElementsByClassName('tries');
-        triesHeart[this.missed].firstElementChild.src = "images/lostHeart.png" 
+        triesHeart[this.missed].firstElementChild.src = "images/arrowHeart.png" 
         this.missed +=1;
      }
      /************************************************************************  

@@ -15,7 +15,7 @@ class Phrase {
     addPhraseToDisplay(){
 
        const phraseUl = document.querySelector("#phrase ul");
-       console.log(phraseUl);
+       //console.log(phraseUl);
        const words = this.game.getRandomPhrase();
 
        for(let l=0; l < this.phrase.length; l++){
