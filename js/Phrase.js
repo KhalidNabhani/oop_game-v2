@@ -14,7 +14,7 @@ class Phrase {
      ************************************************************************  */
     addPhraseToDisplay(){
 
-       const phraseUl = document.querySelector("phrase ul");
+       const phraseUl = document.querySelector("#phrase ul");
        console.log(phraseUl);
        const words = this.game.getRandomPhrase();
 
@@ -24,7 +24,9 @@ class Phrase {
                 letterLi.classList.add("space")
                 
             }else {
-                letterLi.classList.add("hide", "letter", "${this.phrase[l]}") 
+                letterLi.classList.add("hide", "letter", this.phrase[l]);
+                letterLi.innerHTML = this.phrase[l];
+                
             }
             document.querySelector('#phrase ul').appendChild(letterLi);
        }
@@ -43,18 +45,25 @@ class Phrase {
       * 
      ************************************************************************  */
     showMatchedLetter(letter){
-
-        const liElemnts = document.getElementById(phrase).firstElementChild.querySelectorAll('.${letter}').forEach(function (char){
+        
+       
+        
+        const allLetters = document.querySelectorAll('.letter');
+        allLetters.forEach(element => {
+            
         
            
-            if(char.textContent === letter){
-                char.classList.remove('hide');
-                char.classList.add('show');
-
-            }
-            
-        });
-
-
+               if(element.textContent === letter){
+                   element.classList.replace("hide","show");
+               }
+               
+           
+               
+        }); 
+           
+       
+       
+        
+       
     }
 }

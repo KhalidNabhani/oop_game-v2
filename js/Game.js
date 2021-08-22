@@ -11,7 +11,7 @@ class Game{
         this.phrases = [
             'The best of both worlds',
             'Let the cat out of the bag',
-            'You can’t judge a book by its cover',
+            'You cant judge a book by its cover',
             'To hit the nail on the head',
             'No pain no gain',
             'Let the cat out of the bag',
@@ -33,10 +33,10 @@ class Game{
     /* and sets the activePhrase property with the chosen phra                 */
     /************************************************************************  */
     startGame(){
-        document.getElementById('overlay').style.display = 'none';
         this.activePhrase = new Phrase(this.getRandomPhrase());
         this.activePhrase.addPhraseToDisplay();
-        
+        document.getElementById('overlay').className='start';
+        document.getElementById('overlay').style.display = 'none';
     }
 
     /************************************************************************  */
@@ -54,26 +54,67 @@ class Game{
       * matches a letter in the phrase, 
       * and then directs the game based on a correct or incorrect guess
      ************************************************************************  */
-     handleInteraction(){
+    handleInteraction(e){
+         e.disabled = true;
+         e.classList.add("chosen");
 
-     }
+        if (this.activePhrase.checkLetter(e.textContent)){
+            this.activePhrase.showMatchedLetter(e.textContent)
+        }else{
+             e.classList.add("wrong");
+             this.removeLife();
+             
+        }
+
+        if(this.checkForWin()){
+            this.gameOver('win','Congragulations You Won');
+        }
+        if (this.missed === 5){
+             this.gameOver('lose',"Good Luck Next Time No More Tries Are Available For You");
+             console.log("Good Luck Next Time No More Tries Are Available For You");
+        }
+        //if(this.activePhrase.checkLetter())
+    }
      /************************************************************************  
       * this method removes a life from the scoreboard
      ************************************************************************  */
-     removeLife(){
-
+    removeLife(){
+        let triesHeart = document.getElementsByClassName('tries');
+        triesHeart[this.missed].firstElementChild.src = "images/lostHeart.png" 
+        this.missed +=1;
      }
      /************************************************************************  
      * this method checks to see if the player has revealed all of 
      * the letters in the active phrase.
      ************************************************************************  */
-     checkForWin(){
+    checkForWin(){
+         if (document.querySelectorAll('.hide').length === 0){
+             console.log(document.querySelectorAll('.hide').length);
+             return true;
+         } else return false;
 
-     }
+    }
      /************************************************************************  
       * this method displays the original start screen overlay
      ************************************************************************  */
-     gameOver(){
+    gameOver(stat, message){
+        
+        const  keys = document.querySelectorAll(".key");
+        const  lifeHearts = document.querySelectorAll(".tries");
+
+        document.getElementById('overlay').classList.replace("start",stat);
+        document.getElementById("game-over-message").textContent=message;
+        document.getElementById('overlay').style.display = 'block';
+        document.querySelector('#phrase ul').innerHTML ='';
+        
+        keys.forEach(element => {
+            element.disabled=false;
+            keys.forEach(element => element.className = "key");
+            
+        });
+
+        lifeHearts.forEach(heart => heart.firstElementChild.src = "images/liveHeart.png"  );
+        game.missed =0;
 
      }
 }
