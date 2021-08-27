@@ -5,7 +5,7 @@
 class Phrase {
     
     constructor(phrase){
-        this.game = new Game();
+        // this.game = new Game();
         this.phrase = phrase.toLowerCase();
         
     }
@@ -14,9 +14,7 @@ class Phrase {
      ************************************************************************  */
     addPhraseToDisplay(){
 
-       const phraseUl = document.querySelector("#phrase ul");
-       //console.log(phraseUl);
-       const words = this.game.getRandomPhrase();
+       
 
        for(let l=0; l < this.phrase.length; l++){
            let letterLi = document.createElement('li');
@@ -41,29 +39,16 @@ class Phrase {
         
         return (this.phrase.indexOf(letter) !== -1);
     }
+
     /************************************************************************  
       * 
      ************************************************************************  */
     showMatchedLetter(letter){
-        
-       
-        
-        const allLetters = document.querySelectorAll('.letter');
-        allLetters.forEach(element => {
-            
-        
-           
+
+        document.querySelectorAll('.letter').forEach(element => {
                if(element.textContent === letter){
                    element.classList.replace("hide","show");
                }
-               
-           
-               
-        }); 
-           
-       
-       
-        
-       
+        });   
     }
 }
