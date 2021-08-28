@@ -49,19 +49,18 @@ class Game{
     }
 
     /************************************************************************  
-      * this method controls most of the game logic
-      * It checks to see if the button clicked by the player 
-      * matches a letter in the phrase, 
-      * and then directs the game based on a correct or incorrect guess
-     ************************************************************************  */
-
-
+    * this method controls most of the game logic
+    * It checks to see if the button clicked by the player 
+    * matches a letter in the phrase, 
+    * and then directs the game based on a correct or incorrect guess
+    ************************************************************************  */
     handleInteraction(e){
         e.disabled = true;
-        e.classList.add("chosen");
+        
         
 
         if (this.activePhrase.checkLetter(e.textContent)){
+            e.classList.add("chosen");
             this.activePhrase.showMatchedLetter(e.textContent)
         }else{
             e.classList.add("wrong");
@@ -72,9 +71,7 @@ class Game{
             this.gameOver('win','Congragulations You Won');
         }
 
-        if (this.missed === 5){
-            this.gameOver('lose',"Good Luck Next Time No More Tries Are Available For You");
-        }
+        
     }
 
 
@@ -86,7 +83,13 @@ class Game{
         let triesHeart = document.getElementsByClassName('tries');
         triesHeart[this.missed].firstElementChild.src = "images/arrowHeart.png" 
         this.missed +=1;
+        
+        if (this.missed === 5){
+            this.gameOver('lose',"Good Luck Next Time No More Tries Are Available For You");
+        }
+
         document.getElementById("missed_number").textContent=5-this.missed + ' lives(s) available';
+
     }
 
     /************************************************************************  
