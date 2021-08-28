@@ -5,18 +5,17 @@
 class Phrase {
     
     constructor(phrase){
-        this.game = new Game();
+        
         this.phrase = phrase.toLowerCase();
         
     }
     /************************************************************************  
-      * 
-     ************************************************************************  */
+    * this adds letter placeholders to the display when the game starts. 
+    * Each letter is presented by an empty box
+    ************************************************************************  */
     addPhraseToDisplay(){
 
-       const phraseUl = document.querySelector("#phrase ul");
-       console.log(phraseUl);
-       const words = this.game.getRandomPhrase();
+       
 
        for(let l=0; l < this.phrase.length; l++){
            let letterLi = document.createElement('li');
@@ -41,29 +40,17 @@ class Phrase {
         
         return (this.phrase.indexOf(letter) !== -1);
     }
+
     /************************************************************************  
-      * 
-     ************************************************************************  */
+    * reveals the letter(s) on the board that matches the player's selection. 
+    * To reveal the matching letter(s) @param (string) letter - Letter to match
+    ************************************************************************  */
     showMatchedLetter(letter){
-        
-       
-        
-        const allLetters = document.querySelectorAll('.letter');
-        allLetters.forEach(element => {
-            
-        
-           
+
+        document.querySelectorAll('.letter').forEach(element => {
                if(element.textContent === letter){
                    element.classList.replace("hide","show");
                }
-               
-           
-               
-        }); 
-           
-       
-       
-        
-       
+        });   
     }
 }
