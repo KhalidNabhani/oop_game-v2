@@ -30,7 +30,7 @@ class Game{
 
     /************************************************************************  *
     * hides the start screen overlay, calls the getRandomPhrase() method, se.  *
-    * and sets the activePhrase property with the chosen phra                  *
+    * and sets the activePhrase property with the chosen phrase                  *
     ************************************************************************  */
     startGame(){
         
@@ -75,7 +75,7 @@ class Game{
             e.classList.add("chosen");
             this.activePhrase.showMatchedLetter(e.textContent)
             if(this.checkForWin()){
-                this.gameOver('win','Congragulations You Won');
+                this.gameOver('win','Congratulations You Won');
             }
         }else{
             e.classList.add("wrong");
@@ -106,9 +106,7 @@ class Game{
      * the letters in the active phrase.
      ************************************************************************  */
     checkForWin(){
-        if (document.querySelectorAll('.hide').length === 0){
-            return true;
-        } else return false;
+        return document.querySelectorAll('.hide').length === 0;
 
     }
     
@@ -116,8 +114,7 @@ class Game{
       * this method displays the original start screen overlay
      ************************************************************************  */
     gameOver(stat, message){
-        
-        const  keys = document.querySelectorAll(".key");
+        document.querySelectorAll(".key");
         const  lifeHearts = document.querySelectorAll(".tries");
 
         document.getElementById('overlay').classList.replace("start",stat);
