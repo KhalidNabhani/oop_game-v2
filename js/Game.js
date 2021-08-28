@@ -33,8 +33,20 @@ class Game{
     * and sets the activePhrase property with the chosen phra                  *
     ************************************************************************  */
     startGame(){
+        
+        const  keys = document.querySelectorAll(".key");
+        this.missed =0;
+        ignoredKey.length=0;
+        
+        
         document.getElementById('overlay').className='start';
         document.getElementById('overlay').style.display = 'none';
+        document.getElementById("missed_number").textContent=5-this.missed + ' lives(s) available';
+        
+        keys.forEach(element => {
+            element.disabled=false;
+            element.className= "key";
+        });
         this.activePhrase = this.getRandomPhrase();
         this.activePhrase.addPhraseToDisplay();
     }
@@ -62,16 +74,13 @@ class Game{
         if (this.activePhrase.checkLetter(e.textContent)){
             e.classList.add("chosen");
             this.activePhrase.showMatchedLetter(e.textContent)
+            if(this.checkForWin()){
+                this.gameOver('win','Congragulations You Won');
+            }
         }else{
             e.classList.add("wrong");
             this.removeLife();  
         }
-
-        if(this.checkForWin()){
-            this.gameOver('win','Congragulations You Won');
-        }
-
-        
     }
 
 
@@ -116,11 +125,7 @@ class Game{
         document.getElementById('overlay').style.display = 'block';
         document.querySelector('#phrase ul').innerHTML ='';
         
-        keys.forEach(element => {
-            element.disabled=false;
-            keys.forEach(element => element.className = "key");
-            
-        });
+        
 
         lifeHearts.forEach(heart => heart.firstElementChild.src = "images/liveHeart.png"  );
         game.missed =0;
