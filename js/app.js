@@ -12,30 +12,37 @@ const ignoredKey =[];
 let lineOfKeys = [];
 
 
-// keysArray.forEach(item => lineOfKeys.push(item.textContent));
+// built an array letters to use for restriction any other input than screen letters
 for (let i=0;i < keysArray.length;i++){
-    console.log(keysArray[i].innerHTML);
+   
     lineOfKeys.push(keysArray[i].innerHTML);
-    console.log("lineOfKeys     "+lineOfKeys);
+    
 }
+
+/******************************************************** 
+* event listeners 
+* 
+* ******************************************************/
+/***************button start game ******************** */
 startBtn.addEventListener("click", e =>  game.startGame());
 
+/*****************screen key buttons ***************** */
 keyBtn.addEventListener("click", event  => {
    
    
     if(lineOfKeys.indexOf(event.target.innerHTML) !== -1 )
     {
-        console.log(event.target.innerHTML);
         game.handleInteraction(event.target);
         ignoredKey.push(event.target.textContent);  
-    }else console.log("Out and ignored   "+event.target.innerHTML);
+    }
 });
 
+/********************KeyBoard input ******************* */
 kbKeys.addEventListener("keydown", event  => {
     
     keysArray.forEach(element => {
         if(ignoredKey.indexOf(event.key) === -1){
-            if(element.innerHTML === event.key){
+            if(element.innerHTML === event.key){ 
                 ignoredKey.push(event.key);
                 game.handleInteraction(element);
             }

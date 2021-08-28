@@ -5,13 +5,14 @@
 class Phrase {
     
     constructor(phrase){
-        // this.game = new Game();
+        
         this.phrase = phrase.toLowerCase();
         
     }
     /************************************************************************  
-      * 
-     ************************************************************************  */
+    * this adds letter placeholders to the display when the game starts. 
+    * Each letter is presented by an empty box
+    ************************************************************************  */
     addPhraseToDisplay(){
 
        
@@ -41,8 +42,9 @@ class Phrase {
     }
 
     /************************************************************************  
-      * 
-     ************************************************************************  */
+    * reveals the letter(s) on the board that matches the player's selection. 
+    * To reveal the matching letter(s) @param (string) letter - Letter to match
+    ************************************************************************  */
     showMatchedLetter(letter){
 
         document.querySelectorAll('.letter').forEach(element => {
