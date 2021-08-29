@@ -3,7 +3,7 @@
  * app.js */
 
 
-const game = new Game;
+let game;
 const startBtn = document.getElementById("btn__reset");
 const keyBtn = document.querySelector("#qwerty");
 const kbKeys = document.querySelector("html");
@@ -24,7 +24,11 @@ for (let i=0;i < keysArray.length;i++){
 * 
 * ******************************************************/
 /***************button start game ******************** */
-startBtn.addEventListener("click", e =>  game.startGame());
+startBtn.addEventListener("click", () => {
+    game = new Game;
+    game.startGame()
+
+});
 
 /*****************screen key buttons ***************** */
 keyBtn.addEventListener("click", event  => {
